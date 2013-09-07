@@ -91,10 +91,16 @@
          *          command, if command is specified the hook must also be specified and must be the name
          *                  if the app to be called. {duty: "command", hook: "log"} calls the log.js app.
          */
-        var grammars = [{w: "TREEHOUSE", to: [
-            {w: "MUSIC", duty: "command", hook: "music", to: [{w: "UP", to: [{type: "number"}]}, {w: "DOWN", to: [{type: "number"}]}]},
-            {w: "LOG", duty: "command", hook: "log", to: [{w: "ADD", to: [{type: "*", length: 3, end: "STOP"}]}, {w: "DELETE", to: [{type: "string"}]}]},
-            {w: "GIVE", to: [{type: "string", hook: "name", to: [{type: "number", hook: "amount", to: [{w: "POINTS", duty: "command", hook: "points"}]}]}]}
+        // var grammars = [{w: "DELPHI", to: [
+        //     {w: "MUSIC", duty: "command", hook: "music", to: [{w: "UP", to: [{type: "number"}]}, {w: "DOWN", to: [{type: "number"}]}]},
+        //     {w: "LOG", duty: "command", hook: "log", to: [{w: "ADD", to: [{type: "*", length: 3, end: "STOP"}]}, {w: "DELETE", to: [{type: "string"}]}]},
+        //     {w: "GIVE", to: [{type: "string", hook: "name", to: [{type: "number", hook: "amount", to: [{w: "POINTS", duty: "command", hook: "points"}]}]}]}
+        // ]}];
+
+        var flightToObj = {type: "string", to: [{w: "FROM", to: [{type: "string"}]}]};
+        var flightFromObj = {type: "string", to: [{w: "TO", to: [{type: "string"}]}]};
+        var grammars = [{w: "DELPHI", to: [
+            {w: "FLIGHT", duty: "command", hook: "points", to: [{w: "TO", to: [flightToObj]}, {w: "FROM", to: [flightFromObj]}]}
         ]}];
 
         var curGrammars = resetGrammars(); //  Current grammars node
@@ -177,13 +183,13 @@
         //  If the word is reserved or special, perform some action
         //  @return continuation statements: null- do nothing, continue loop, break from loop, etc..
         var magicCommand = function(word) {
-            if(word === "TREEHOUSE") {      //  Reset
+            if(word === "DELPHI") {      //  Reset
                 curGrammars = resetGrammars();
                 return null;
             }
         };
 
-        var sendCommad = function() {
+        var sendCommand = function() {
             var args = [];
             var command = null;
             for (var i = 0; i < commandNodes.length; i++) {
@@ -216,8 +222,12 @@
                     url: url,                       
                     success: function(data) {
                         window.console.log(data);
+                        if(data.command.type === "newWindow") { //  Open a new window if required
+                            window.open(data.command.data);
+                        }
                     }
                 });
+                window.console.log("Command sent: "+command);
             }
         };
 
@@ -281,7 +291,7 @@
                             continue;
                         }
                         else if(node === -1) { //  Finished command
-                            sendCommad();   //  Transmit the finished command
+                            sendCommand();   //  Transmit the finished command
                             commandNodes = [];          //  Reset the command nodes
                             curGrammars = resetGrammars();
                         }
