@@ -18,7 +18,7 @@ exports.apps = function(req, res){
 
 	var appFound = false;
 	try {
-		var apps = ["points"];
+		var apps = ["flight"];
 		for (var i = 0; i < apps.length; i++) {
 			if(apps[i] === appRequest) {
 				var app = require('./apps/'+ apps[i] +'.js');
