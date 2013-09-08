@@ -16,17 +16,17 @@ exports.init = function(args) {
 	// Set object as a promise
 	defer.promise( response );
 
-	var toPerson = null;
+	var desc = null;
 	var message = Math.random().toString();
 	for(var i = 0; i < args.length; i++) {
 		var arg = args[i];
 		if(arg.hook === "type") {
-			toPerson = arg.data.join(" ");
+			desc = arg.data.join(" ");
 		}
 
 	}
 
-	var url = "http://www.yelp.com/search?find_desc=" +  desc + "&find_loc=philadelphia";
+	var url = "http://www.yelp.com/search?find_desc=" + desc + "&find_loc=philadelphia";
 
 	// Resolve the deferred
 	response = {command: {type: "newWindow", data: url}};

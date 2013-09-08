@@ -41,13 +41,13 @@ exports.init = function(args) {
                 user_id: "243875",
                 amount: "0.01",
                 note: "'"+message+"'"
-            },                      
-            url: "https://api.venmo.com/payments",                       
-            success: function(data) {
+            },                                            
+            done: function(data) {
                 // Resolve the deferred
+                console.log(data);
+                url = "https://api.venmo.com/beyonce";
                 response = {command: {type: "newWindow", data: url}};
                 defer.resolve( JSON.stringify(response));
-                window.console.dir(data);
             }
         });
 
