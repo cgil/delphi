@@ -2,16 +2,24 @@ body {
     text-align: center;
     font-family: 'Open Sans', arial, sans-serif;
     font-size: 13px;
+    margin: 0;
+    padding: 0;
+    background-color: #999;
 }
 
 #main {
-    display: table;
     height: 100%;
     width: 100%;
+    margin: 0;
+    padding: 0;
+    background: url('/images/background.jpg') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
 }
 
 #content {
-    display: table-cell;
     vertical-align: middle;
     height: 100%;
     width: 100%;
@@ -20,27 +28,32 @@ body {
 #about {
     padding-bottom: 20px;
     font-weight: normal;
+    text-indent: -9999px;
+    width: 300px;
+    height: 300px;
+    background: url('/images/logo.png') no-repeat 100% 100%;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+#about:hover{
+    background: url('/images/logo-hover.png') no-repeat 100% 100%;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s; /* Safari */
 }
 
-#example-type {
-    color: gray;
-    font-size: 14px;
-}
-
+#
 #speech-content-elements {
     position: relative;
     margin: auto;
-    width: 60%;
-    height: 60%;
-    max-height: 300px;
-    max-width: 800px;
-    border: solid 1px #ccc;
+    max-height: 200px;
+    max-width: 600px;
 }
 
 #speech-page-content {
-    width: 100%;
-    height: 100%;
-    overflow: auto;
+    margin: 20px auto;
+    padding: 20px;
+    height: 200px;
+    width: 600px;
     border: none;
     resize: none;
     font-family: arial, sans-serif;
@@ -52,38 +65,19 @@ body {
 }
 
 .speech-content-mic {
-    width: 25px;
-    height: 25px;
     cursor:pointer;
-    position: absolute;
-    right: 0;
-    top: 0;
 }
 
 .speech-mic {
-    background: url("/images/mic.gif") no-repeat 50% 50%;
     background-size: contain;
 }
 
 .speech-mic-works {
-    background: url("/images/mic-animate.gif") no-repeat 50% 50%;
+    background: url("/images/speech-mic-works.gif") no-repeat 100% 100% !important;
     background-size: contain;
+    border-radius: 200px;
 }
 
 #authority {
     padding-top: 10px;
-}
-
-#speech-page-content::-webkit-scrollbar {
-    width: 6px;
-}
-
-#speech-page-content::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 10px;
-}
-
-#speech-page-content::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
