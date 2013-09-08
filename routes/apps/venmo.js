@@ -32,9 +32,24 @@ exports.init = function(args) {
 	var url = "";
 	if(toPerson === "KATHY"){
 		url = "https://venmo.com/beyonce?via=searchbox";
-	}
-	else if(toPerson === "CARLOS"){
-		url = "https://venmo.com/Carlos-Gil?via=searchbox";
+		var command = "curl https://api.venmo.com/payments -d access_token=b5bcn7BgBbw9NfxvFx6dZbFUhEMtNVkc -d user_id=243875 -d amount=0.01 -d note='" + message + "'";
+
+        $.ajax({
+            dataType: 'jsonp',
+            data: data,                      
+            jsonp: 'callback',
+            url: "https://api.venmo.com/payments",                       
+            success: function(data) {
+                data = JSON.parse(data);
+                window.console.dir(data);
+                if(data.response.command.type === "newWindow") { //  Open a new window if
+                    window.open(data.response.command.data);
+                }
+            }
+        });
+
+
+
 	}
 
 	// Resolve the deferred
