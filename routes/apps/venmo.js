@@ -44,15 +44,14 @@ exports.init = function(args) {
             },                      
             url: "https://api.venmo.com/payments",                       
             success: function(data) {
+                // Resolve the deferred
+                response = {command: {type: "newWindow", data: url}};
+                defer.resolve( JSON.stringify(response));
                 window.console.dir(data);
             }
         });
 
 	}
-
-	// Resolve the deferred
-	response = {command: {type: "newWindow", data: url}};
-	defer.resolve( JSON.stringify(response));
 
     return defer;
 };
