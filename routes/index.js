@@ -18,13 +18,13 @@ exports.apps = function(req, res){
 
 	var appFound = false;
 	try {
-		var apps = ["flight"];
+		var apps = ["points", "flight"];
 		for (var i = 0; i < apps.length; i++) {
 			if(apps[i] === appRequest) {
 				var app = require('./apps/'+ apps[i] +'.js');
 				app.init(JSON.parse(args)).then(function(data) {
 					// res.send(req.query.callback + '('+ JSON.stringify(data) + ');');
-					var response = '{"app": "'+ appRequest +'", "args": "'+ args +'", "success": "true", "response":"'+ data +'"}';
+					var response = '{"app": "'+ appRequest +'", "args": '+ args +', "success": "true", "response":'+ data +'}';
 					if(typeof callback !== 'undefined') {
 						response = callback + '(' + JSON.stringify(response) + ');'; 
 					}  

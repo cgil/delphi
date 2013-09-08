@@ -1,20 +1,42 @@
 var jquery = require('jquery');
 
+exports.init = function(args) {
 
-exports.init(function(args){
-    //args is an array that is in this form
-    var toPoint;
-    var fromPoint;
-    var defer = jquery.Deferred();
-    var response = {};
-    defer.promise(response);
-    for(var i = 0; i < args.length; i++){
-        var arg = args[i]
-        if(arg.hook =="to") 
-            toPoint = arg.data.join();
-        else
-            fromPoint = arg.data.join();
-    }
+	var isset = function (check) {
+        var test = (typeof check !== 'undefined' && check !== null && check !== "");
+        if (check instanceof Array) {
+            test = test && (check.length > 0);
+        }
+        return test;
+    };
 
-    defer.resolve(JSON.stringify({"command": {"type": "newWindow", "http://www.hipmunk.com/flights/ewr-to-DTT#!dates=Oct04,Oct06&pax=1"}}));
-});
+	var defer = jquery.Deferred();
+	var response = {};
+
+	// Set object as a promise
+	defer.promise( response );
+
+	var toCity = null;
+	var fromCity = null;
+	for(var i = 0; i < args.length; i++) {
+		var arg = args[i];
+		if(arg.hook === "toCity") {
+			toCity = arg.data.join(" ");
+		}
+		else if (arg.hook === "fromCity") {
+			fromCity = arg.data.join(" ");
+		}
+	}
+
+	var url = "http://www.hipmunk.com/flights/" + fromCity + "-to-" + toCity + "#!dates=Sep09";
+
+
+
+	// Resolve the deferred
+	response = {command: {type: "newWindow", data: url}};
+	defer.resolve( JSON.stringify(response));
+
+    return defer;
+};
+
+
