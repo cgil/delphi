@@ -100,7 +100,9 @@
         var flightToObj = {type: "string", hook: "toCity", to: [{w: "FROM", to: [{type: "string", hook: "fromCity"}]}]};
         var flightFromObj = {type: "string", hook: "fromCity", to: [{w: "TO", to: [{type: "string", hook: "toCity"}]}]};
         var grammars = [{w: "DELPHI", to: [
-            {w: "FLIGHT", duty: "command", hook: "flight", to: [{w: "TO", to: [flightToObj]}, {w: "FROM", to: [flightFromObj]}]}
+            {w: "FLIGHT", duty: "command", hook: "flight", to: [{w: "TO", to: [flightToObj]}, {w: "FROM", to: [flightFromObj]}]},
+            {w: "RANDOM", to: [{w: "XKCD", duty: "command", hook: "xkcd"}]},
+            {w: "VENMO", duty: "command", hook:"venmo", to: [{type: "string", hook: "toPerson", to: [{type:"number", hook: "amount", to: [{w: "FOR", to: [{type: "*", end: "END", hook: "message"}]}]}]}]}
         ]}];
 
         var curGrammars = resetGrammars(); //  Current grammars node
