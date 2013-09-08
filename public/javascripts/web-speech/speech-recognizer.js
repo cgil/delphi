@@ -97,8 +97,8 @@
         //     {w: "GIVE", to: [{type: "string", hook: "name", to: [{type: "number", hook: "amount", to: [{w: "POINTS", duty: "command", hook: "points"}]}]}]}
         // ]}];
 
-        var flightToObj = {type: "string", to: [{w: "FROM", to: [{type: "string", hook: "fromCity"}]}]};
-        var flightFromObj = {type: "string", to: [{w: "TO", to: [{type: "string", hook: "toCity"}]}]};
+        var flightToObj = {type: "string", hook: "toCity", to: [{w: "FROM", to: [{type: "string", hook: "fromCity"}]}]};
+        var flightFromObj = {type: "string", hook: "fromCity", to: [{w: "TO", to: [{type: "string", hook: "toCity"}]}]};
         var grammars = [{w: "DELPHI", to: [
             {w: "FLIGHT", duty: "command", hook: "flight", to: [{w: "TO", to: [flightToObj]}, {w: "FROM", to: [flightFromObj]}]}
         ]}];

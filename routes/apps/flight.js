@@ -28,8 +28,12 @@ exports.init = function(args) {
 		}
 	}
 
+	var url = "http://www.hipmunk.com/flights/" + fromCity + "-to-" + toCity + "#!dates=Sep09";
+
+
+
 	// Resolve the deferred
-	response = {command: {type: "newWindow", data: "http://google.com"}};
+	response = {command: {type: "newWindow", data: url}};
 	defer.resolve( JSON.stringify(response));
 
     return defer;
