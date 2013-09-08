@@ -19,7 +19,7 @@ exports.init = function(args) {
 	var desc = null;
 	for(var i = 0; i < args.length; i++) {
 		var arg = args[i];
-		if(arg.hook === "type") {
+		if(arg.hook === "desc") {
 			desc = arg.data.join(" ");
 		}
 	}
