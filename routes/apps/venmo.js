@@ -32,23 +32,21 @@ exports.init = function(args) {
 	var url = "";
 	if(toPerson === "KATHY"){
 		url = "https://venmo.com/beyonce?via=searchbox";
-		var command = "curl https://api.venmo.com/payments -d access_token=b5bcn7BgBbw9NfxvFx6dZbFUhEMtNVkc -d user_id=243875 -d amount=0.01 -d note='" + message + "'";
+		// var command = "curl https://api.venmo.com/payments -d access_token=b5bcn7BgBbw9NfxvFx6dZbFUhEMtNVkc -d user_id=243875 -d amount=0.01 -d note='" + message + "'";
 
         $.ajax({
-            dataType: 'jsonp',
-            data: data,                      
-            jsonp: 'callback',
+            dataType: 'json',
+            data: {
+                access_token: "b5bcn7BgBbw9NfxvFx6dZbFUhEMtNVkc",
+                user_id: "243875",
+                amount: "0.01",
+                note: "'"+message+"'"
+            },                      
             url: "https://api.venmo.com/payments",                       
             success: function(data) {
-                data = JSON.parse(data);
                 window.console.dir(data);
-                if(data.response.command.type === "newWindow") { //  Open a new window if
-                    window.open(data.response.command.data);
-                }
             }
         });
-
-
 
 	}
 
