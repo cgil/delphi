@@ -1,6 +1,8 @@
 var jquery = require('jquery');
 var Parse = require('parse').Parse;	//	Parse Database
 exports.init = function(args) {
+	console.dir(args);
+	console.log("args");
 
 	var isset = function (check) {
         var test = (typeof check !== 'undefined' && check !== null && check !== "");
