@@ -102,7 +102,7 @@
         var grammars = [{w: "DELPHI", to: [
             {w: "FLIGHT", duty: "command", hook: "flight", to: [{w: "TO", to: [flightToObj]}, {w: "FROM", to: [flightFromObj]}]},
             {w: "RANDOM", to: [{w: "XKCD", duty: "command", hook: "xkcd"}]},
-            {w: "VENMO", duty: "command", hook:"venmo", to: [{type: "string", hook: "toPerson", to: [{type:"number", hook: "amount", to: [{w: "FOR", to: [{type: "*", end: "END", hook: "message"}]}]}]}]}
+            {w: "VENMO", duty: "command", hook:"venmo", to: [{type: "string", hook: "toPerson", to: [{type:"number", hook: "amount", to: [{w: "FOR", to: [{type: "*", end: "STOP", hook: "message", length: 10}]}]}]}]}
         ]}];
 
         var curGrammars = resetGrammars(); //  Current grammars node

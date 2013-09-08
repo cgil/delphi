@@ -28,16 +28,13 @@ exports.init = function(args) {
 		}
 
 	}
-
+	var url = "";
 	if(toPerson === "KATHY"){
-		var url = "https://api.venmo.com/payments -d access_token=b5bcn7BgBbw9NfxvFx6dZbFUhEMtNVkc -d user_id=" + "243875" + " -d amount=0.01 -d note='message'";	
+		url = "https://api.venmo.com/payments -d access_token=b5bcn7BgBbw9NfxvFx6dZbFUhEMtNVkc -d user_id=" + "243875" + " -d amount=0.01 -d note='message'";	
 	}
 	else if(toPerson === "CARLOS"){
-		VAR URL = "https://api.venmo.com/payments -d access_token=b5bcn7BgBbw9NfxvFx6dZbFUhEMtNVkc -d user_id=" + "243875" + " -d amount=0.01 -d note='message'";
+		url = "https://api.venmo.com/payments -d access_token=b5bcn7BgBbw9NfxvFx6dZbFUhEMtNVkc -d user_id=" + "243875" + " -d amount=0.01 -d note='message'";
 	}
-
-	
-
 
 
 	// Resolve the deferred
